@@ -31,3 +31,24 @@ def get_evento_info(evento_id):
         return jsonify(evento_dict)
     else:
         return jsonify({'message': 'Evento not found'}), 404
+
+@evento_bp.route('/eventoNomAsc', methods=['GET'])
+def get_eventosNomAsc():
+    evento_service = EventoServices(mysql)
+    eventos = evento_service.get_eventosNomAsc()
+
+    eventos_list = []
+    for evento in eventos:
+        evento_dict = {
+            'idEvento': evento.idEvento,
+            'idArtista': evento.idArtista,
+            'nombre': evento.nombre,
+            'descripcion': evento.descripcion,
+            'idSede': evento.idSede,
+            'fecha': str(evento.fecha),  # Convierte la fecha a una cadena legible
+            'hora': str(evento.hora),    # Convierte la hora a una cadena legible
+            'cantidadBoletosNormales': evento.cantidadBoletosNormales,
+            'cantidadBoletosVip': evento.cantidadBoletosVip
+        }
+        eventos_list.append(evento_dict)
+    return jsonify(eventos_list)
