@@ -3,3 +3,4 @@ class Artista:
         self.idArtista = idArtista
         self.nombre = nombre
         self.generoMusical = generoMusical
+

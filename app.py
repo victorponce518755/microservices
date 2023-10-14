@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_mysqldb import MySQL
 from flask_session import Session  # Importa la extensión Flask-Session
+import os
 
 # Configura la instancia de MySQL
 mysql = MySQL()
@@ -10,9 +11,9 @@ def create_app():
 
     # Configuración de la base de datos
     app.config['MYSQL_HOST'] = 'database-main.cbsqc5jwwjad.us-east-2.rds.amazonaws.com'
-    app.config['MYSQL_USER'] = 'main'
+    app.config['MYSQL_USER'] = 'admin'
     app.config['MYSQL_PASSWORD'] = 'Rtxmlp4335'
-    app.config['MYSQL_DB'] = 'database-main'
+    app.config['MYSQL_DB'] = 'Conciertos'
 
     # Configuración de Flask-Session
     app.config['SESSION_TYPE'] = 'filesystem'  # Almacena las sesiones en el sistema de archivos
@@ -33,6 +34,13 @@ def create_app():
     # Registrar el Blueprint del controlador de sede
     from controllers.SedeController import sede_bp
     app.register_blueprint(sede_bp, url_prefix='/sedes')
+    # Registrar el Blueprint del controlador de boleto
+    from controllers.BoletoController import boleto_bp
+    app.register_blueprint(boleto_bp, url_prefix='/boletos')
+    # Registrar el Blueprint del controlador de evento
+    from controllers.EventoController import evento_bp
+    app.register_blueprint(evento_bp, url_prefix='/eventos')
+
 
     return app
 
