@@ -35,7 +35,7 @@ def get_evento_info(evento_id):
 @evento_bp.route('/eventoNomAsc', methods=['GET'])
 def get_eventosNomAsc():
     evento_service = EventoServices(mysql)
-    eventos = evento_service.get_eventosNomAsc()
+    eventos = evento_service.get_eventoNomAsc()
 
     eventos_list = []
     for evento in eventos:
