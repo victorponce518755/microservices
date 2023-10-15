@@ -52,3 +52,24 @@ def get_eventosNomAsc():
         }
         eventos_list.append(evento_dict)
     return jsonify(eventos_list)
+
+@evento_bp.route('/eventoNomDesc', methods=['GET'])
+def get_eventosNomDesc():
+    evento_service = EventoServices(mysql)
+    eventos = evento_service.get_eventoNomDesc()
+
+    eventos_list = []
+    for evento in eventos:
+        evento_dict = {
+            'idEvento': evento.idEvento,
+            'idArtista': evento.idArtista,
+            'nombre': evento.nombre,
+            'descripcion': evento.descripcion,
+            'idSede': evento.idSede,
+            'fecha': str(evento.fecha),  # Convierte la fecha a una cadena legible
+            'hora': str(evento.hora),    # Convierte la hora a una cadena legible
+            'cantidadBoletosNormales': evento.cantidadBoletosNormales,
+            'cantidadBoletosVip': evento.cantidadBoletosVip
+        }
+        eventos_list.append(evento_dict)
+    return jsonify(eventos_list)

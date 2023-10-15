@@ -38,4 +38,16 @@ class ModelEvento:
             evento = Evento(evento_data[0], evento_data[1], evento_data[2], evento_data[3], evento_data[4], evento_data[5], evento_data[6], evento_data[7], evento_data[8])
             eventos.append(evento)
         return eventos
-    #dddd
+    
+    # funcion para filtrar eventos por nombre en orden alfabetico inverso
+    def get_eventosNomDesc(self):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute('SELECT Eventos.idEvento, Eventos.idArtista, Eventos.nombre, Eventos.descripcion, Eventos.idSede, Eventos.fecha, Eventos.hora, Eventos.cantidadBoletosNormales, Eventos.cantidadBoletosVip FROM Eventos ORDER BY Eventos.nombre DESC')
+        eventos_data = cursor.fetchall()
+        cursor.close()
+
+        eventos = []
+        for evento_data in eventos_data:
+            evento = Evento(evento_data[0], evento_data[1], evento_data[2], evento_data[3], evento_data[4], evento_data[5], evento_data[6], evento_data[7], evento_data[8])
+            eventos.append(evento)
+        return eventos

@@ -12,3 +12,9 @@ class BoletoServices:
     def get_boleto(self, boleto_id):
         return self.model_boleto.get_boleto(boleto_id)
     
+    def get_boletosPrecioAsc(self):
+        return self.model_boleto.get_boletosPrecioAsc()
+    
+    def get_boletosPrecioDesc(self):
+        return self.model_boleto.get_boletosPrecioDesc()
+    

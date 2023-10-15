@@ -14,3 +14,6 @@ class EventoServices:
     
     def get_eventoNomAsc(self):
         return self.model_evento.get_eventosNomAsc()
+    
+    def get_eventoNomDesc(self):
+        return self.model_evento.get_eventosNomDesc()
